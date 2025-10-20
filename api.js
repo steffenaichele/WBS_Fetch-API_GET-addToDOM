@@ -11,3 +11,5 @@ const fetchPokemon = async (id) => {
         return null;
     }
 };
+
+export default fetchPokemon;
