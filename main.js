@@ -1,6 +1,8 @@
 import addSections from "/createSections.js";
+import createEntry from "/createEntry.js";
+import fetchPokemon from "/api.js";
 
-const path = "https://pokeapi.co/api/v2/pokemon/";
+
 let counter = 1;
 
 const generations = [
@@ -15,14 +17,14 @@ const generations = [
     {name:"Generation 9", start: 906, end: 1025 }
 ];
 
-for (const gen in generations) {
-    addSections(gen);
+async function loadAllPokemon() {
+	for (let i = 0; i < generations.length; i++) {
+		addSections(generations[i]);
+		for (let j = generations[i].start; j <= generations[i].end; j++) {
+			const pokemonData = await fetchPokemon(j);
+			createEntry(pokemonData, i);
+		}
+	}
 }
 
-async function fetchPokemon() {
-    const response = await fetch(path + counter);
-    const data = await response.json();
-    console.log(data);
-    displayPokemon(data);
-    counter++;
-}
+loadAllPokemon();
