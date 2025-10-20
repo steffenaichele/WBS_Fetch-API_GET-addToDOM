@@ -15,8 +15,8 @@ const generations = [
     {name:"Generation 9", start: 906, end: 1025 }
 ];
 
-for (const gen in generations) {
-    addSections(gen);
+for (let i = 0; i < generations.length; i++) {
+    addSections(generations[i]);
 }
 
 async function fetchPokemon() {
