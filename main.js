@@ -1,6 +1,6 @@
 import addSections from "/createSections.js";
 
-const path = "https://pokeapi.co/api/v2/pokemon/";
+
 let counter = 1;
 
 const generations = [
